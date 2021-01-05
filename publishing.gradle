@@ -1,7 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-apply from: '../dependencies.gradle'
+apply from: rootProject.file('dependencies.gradle')
 
 tasks.register("sourceJar", Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -15,11 +15,9 @@ afterEvaluate {
                 from components.release
                 artifact sourceJar
 
-//                groupId = lib_project_group
                 groupId = project.ext.groupId
-//                artifactId = lib_artifact_id
                 artifactId = project.ext.artifactId
-                version = '1.0.0'
+                version = lib_version
 
                 pom {
                     name = "Conductor ViewModel"
@@ -55,6 +53,7 @@ afterEvaluate {
 
         publications = ["releaseAar"]
 
+        publish = true
         override = true
 
         pkg {
@@ -68,7 +67,6 @@ afterEvaluate {
             licenses = lib_licenses
             labels = lib_keywords
             publicDownloadNumbers = true
-//            publish = true
 
             githubRepo = github_repo
 
@@ -88,7 +86,6 @@ ext {
     github_repo = "${github_username}/${github_repo_name}"
 
     bintray_repo = 'Conductor'
-//    bintray_project_name = github_repo_name
 
     site_url = "https://github.com/${github_username}/${github_repo_name}"
     git_url = site_url + '.git'
@@ -96,9 +93,6 @@ ext {
 
     lib_desc = 'Adds ViewModel support to Conductor library'
     lib_keywords = ['conductor', 'viewmodel', 'lifecycle']
-//    lib_project_group = 'com.duglasher.conductorviewmodel'
     lib_licenses = ['Apache-2.0']
-//    lib_version_code = 1
     lib_version = versions.library_version_name
-//    lib_artifact_id = 'conductor-viewmodel'
 }
