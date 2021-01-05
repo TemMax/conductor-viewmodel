@@ -4,8 +4,8 @@ plugins {
 }
 
 ext {
-    groupId = 'com.duglasher.conductorviewmodel'
-    bintrayPackageName = "conductor-viewmodel"
+    groupId = 'com.duglasher'
+    bintrayPackageName = "ViewModel"
     artifactId = "conductor-viewmodel"
 }
 
