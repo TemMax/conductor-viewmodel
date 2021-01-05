@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.ConductorViewModels" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+    </style>
+</resources>

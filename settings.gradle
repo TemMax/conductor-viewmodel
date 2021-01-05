@@ -1,0 +1,3 @@
+include ':conductorviewmodel'
+include ':app'
+rootProject.name = "ConductorViewModels"
