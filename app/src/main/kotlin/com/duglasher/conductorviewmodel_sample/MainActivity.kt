@@ -1,4 +1,4 @@
-package com.duglasher.conductorviewmodel
+package com.duglasher.conductorviewmodel_sample
 
 import android.os.Bundle
 import android.view.ViewGroup

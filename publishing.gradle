@@ -1,0 +1,104 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+apply from: '../dependencies.gradle'
+
+tasks.register("sourceJar", Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            releaseAar(MavenPublication) {
+                from components.release
+                artifact sourceJar
+
+//                groupId = lib_project_group
+                groupId = project.ext.groupId
+//                artifactId = lib_artifact_id
+                artifactId = project.ext.artifactId
+                version = '1.0.0'
+
+                pom {
+                    name = "Conductor ViewModel"
+                    description = lib_desc
+                    url = site_url
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = github_username
+                            name = 'Artsiom Komar'
+                            email = 'kom07art@gmail.com'
+                        }
+                    }
+                    scm {
+                        url = site_url
+                    }
+                }
+            }
+        }
+    }
+
+    bintray {
+        Properties properties = new Properties()
+        properties.load(rootProject.file('local.properties').newDataInputStream())
+
+        user = properties.getProperty('bintray.user')
+        key = properties.getProperty('bintray.apiKey')
+
+        publications = ["releaseAar"]
+
+        override = true
+
+        pkg {
+            repo = bintray_repo
+            name = project.ext.bintrayPackageName
+            desc = lib_desc
+
+            websiteUrl = site_url
+            vcsUrl = git_url
+            issueTrackerUrl = issues_url
+            licenses = lib_licenses
+            labels = lib_keywords
+            publicDownloadNumbers = true
+//            publish = true
+
+            githubRepo = github_repo
+
+            version {
+                name = lib_version
+                desc = lib_desc
+                released = new Date()
+                vcsTag = lib_version
+            }
+        }
+    }
+}
+
+ext {
+    github_username = 'TemMax'
+    github_repo_name = 'conductor-viewmodel'
+    github_repo = "${github_username}/${github_repo_name}"
+
+    bintray_repo = 'Conductor'
+//    bintray_project_name = github_repo_name
+
+    site_url = "https://github.com/${github_username}/${github_repo_name}"
+    git_url = site_url + '.git'
+    issues_url = site_url + '/issues'
+
+    lib_desc = 'Adds ViewModel support to Conductor library'
+    lib_keywords = ['conductor', 'viewmodel', 'lifecycle']
+//    lib_project_group = 'com.duglasher.conductorviewmodel'
+    lib_licenses = ['Apache-2.0']
+//    lib_version_code = 1
+    lib_version = versions.library_version_name
+//    lib_artifact_id = 'conductor-viewmodel'
+}

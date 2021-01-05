@@ -3,27 +3,32 @@ plugins {
     id 'kotlin-android'
 }
 
+ext {
+    groupId = 'com.duglasher.conductorviewmodel'
+    bintrayPackageName = "conductor-viewmodel"
+    artifactId = "conductor-viewmodel"
+}
+
+apply from: '../dependencies.gradle'
+apply from: rootProject.file('publishing.gradle')
+
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion versions.compile_sdk
+    buildToolsVersion versions.build_tools
 
     defaultConfig {
-        minSdkVersion 22
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.min_sdk
+        targetSdkVersion versions.target_sdk
+        versionCode versions.library_version_code
+        versionName versions.library_version_name
+
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     sourceSets {
         main.java.srcDirs = ['src/main/kotlin']
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,10 +39,10 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compileOnly "androidx.activity:activity-ktx:1.1.0"
-    compileOnly "com.bluelinelabs:conductor:3.0.0"
-    api "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    api "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
+    implementation libraries.kotlin
+    compileOnly libraries.androidx_activity
+    compileOnly libraries.conductor
+    api libraries.androidx_lifecycle_runtime
+    api libraries.androidx_lifecycle_viewmodel
+    api libraries.androidx_lifecycle_viewmodel_savedstate
 }

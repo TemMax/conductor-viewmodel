@@ -1,4 +1,4 @@
-package com.duglasher.conductorviewmodel
+package com.duglasher.conductorviewmodel_sample
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

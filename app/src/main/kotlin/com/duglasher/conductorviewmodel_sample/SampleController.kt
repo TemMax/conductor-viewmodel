@@ -1,4 +1,4 @@
-package com.duglasher.conductorviewmodel
+package com.duglasher.conductorviewmodel_sample
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
@@ -12,6 +12,8 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.duglasher.conductorviewmodel.ViewModelController
+import com.duglasher.conductorviewmodel.viewModels
 
 
 class SampleController : ViewModelController() {

@@ -1,0 +1,38 @@
+ext.versions = [
+        app_version_code     : 1,
+
+        library_version_code : 1,
+        library_version_name : '1.0.0',
+
+        compile_sdk          : 30,
+        build_tools          : '30.0.3',
+        min_sdk              : 22,
+        target_sdk           : 30,
+
+        android_gradle_plugin: '4.1.1',
+
+        kotlin               : '1.4.21',
+
+        androidx_activity    : '1.1.0',
+        androidx_appcompat   : '1.2.0',
+        androidx_lifecycle   : '2.2.0',
+
+        conductor            : '3.0.0',
+]
+
+ext.gradlePlugins = [
+        android: "com.android.tools.build:gradle:$versions.android_gradle_plugin",
+        kotlin : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+]
+
+ext.libraries = [
+        kotlin                                 : "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin",
+
+        androidx_activity                      : "androidx.activity:activity-ktx:$versions.androidx_activity",
+        androidx_appcompat                     : "androidx.appcompat:appcompat:$versions.androidx_appcompat",
+        androidx_lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx_lifecycle",
+        androidx_lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.androidx_lifecycle",
+        androidx_lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.androidx_lifecycle",
+
+        conductor                              : "com.bluelinelabs:conductor:$versions.conductor",
+]

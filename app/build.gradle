@@ -3,15 +3,17 @@ plugins {
     id 'kotlin-android'
 }
 
+apply from: '../dependencies.gradle'
+
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion versions.compile_sdk
+    buildToolsVersion versions.build_tools
 
     defaultConfig {
-        applicationId "com.duglasher.conductorviewmodel"
-        minSdkVersion 22
-        targetSdkVersion 30
-        versionCode 1
+        applicationId "com.duglasher.conductorviewmodel_sample"
+        minSdkVersion versions.min_sdk
+        targetSdkVersion versions.target_sdk
+        versionCode versions.app_version_code
         versionName "1.0"
     }
 
@@ -35,8 +37,8 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation "com.bluelinelabs:conductor:3.0.0"
+    implementation libraries.kotlin
+    implementation libraries.androidx_appcompat
+    implementation libraries.conductor
     implementation project(":conductorviewmodel")
 }
